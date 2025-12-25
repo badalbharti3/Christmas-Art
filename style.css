@@ -1,0 +1,205 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(#00111a,#00334d);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card{
+    background:rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    color:white;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    box-shadow: 0 0 20px gold, 0 0 40px silver;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom: 10px;
+    animation:glow 2s infinite alternate;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+p{
+    margin-bottom:30px;
+    opacity:0.9;
+}
+
+@keyframes glow{
+    from{
+        text-shadow: 0 0 20px red;
+    }
+    to{
+        text-shadow: 0 0 30px gold;
+    }
+}
+
+/* --- Tree Sections --- */
+.tree {
+    position: relative;
+    width: 200px;
+    margin: 20px auto;
+}
+
+.star{
+    color:gold;
+    font-size:30px;
+    text-align: center;
+    animation: twinkle 1s infinite alternate;
+    transition:0.3s;
+}
+
+@keyframes twinkle{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.2);
+    }
+}
+
+.star:hover{
+    font-size:50px;
+    cursor: pointer;
+}
+
+.t1, .t2, .t3 {
+    width: 0;
+    height: 0;
+    margin: auto;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    position: relative;
+}
+
+/* Negative margins make the segments overlap for a realistic look */
+.t1 {
+    border-bottom: 60px solid #0f9d58;
+    z-index: 3;
+}
+
+.t2 {
+    border-bottom: 70px solid #0b8043;
+    margin-top: -30px; /* Pulls it up under t1 */
+    border-left-width: 75px;
+    border-right-width: 75px;
+    z-index: 2;
+}
+
+.t3 {
+    border-bottom: 80px solid #0a6b3a;
+    margin-top: -35px; /* Pulls it up under t2 */
+    border-left-width: 90px;
+    border-right-width: 90px;
+    z-index: 1;
+}
+
+.trunk {
+    width: 30px;
+    height: 30px;
+    background: #5d4037;
+    margin: -5px auto 0; /* Tightened gap to tree */
+    border-radius: 0 0 5px 5px;
+}
+
+.snow{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-image: radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    animation: snow 10s linear infinite;
+}
+
+@keyframes snow{
+    from{
+        background-position: 0 0, 25px 25px;
+    }
+    to{
+        background-position:0 100px, 25px 125px;
+    }
+}
+
+
+/* --- Gift Sections --- */
+.gifts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.gift {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.box {
+    width: 100px;
+    height: 70px;
+    background: linear-gradient(135deg, #ffd700, #c0c0c0);
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 8px 8px;
+    z-index: 2;
+}
+
+.lid {
+    width: 110px;
+    height: 20px;
+    background: #ffd700;
+    position: absolute;
+    top: 15px; /* Adjusted to sit on box */
+    left: -5px; /* Centered relative to 100px box */
+    border-radius: 5px;
+    transition: 0.5s;
+    transform-origin: left;
+    z-index: 4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Emoji Pop-up Effect */
+.gift::after {
+    content: "🎁🎄🌟🎁🎄🌟";
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 20px;
+    opacity: 0;
+    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.gift:hover .lid {
+    transform: rotate(-45deg) translateY(-20px);
+}
+
+.gift:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -60px); /* Emojis fly up out of the box */
+}
+
